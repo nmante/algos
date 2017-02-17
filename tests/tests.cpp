@@ -54,3 +54,30 @@ TEST_CASE("SORT - Selection Sort"){
 	REQUIRE(v == vComp);
 }
 
+TEST_CASE("SORT - Insertion Sort"){
+	std::vector<int> v = {2, 3, 1, 6, 10, 9, -1, 20};
+	sort::insertionSort(v);
+	std::vector<int> vComp = {-1, 1, 2, 3, 6, 9, 10, 20};
+	REQUIRE(v == vComp);
+}
+
+TEST_CASE("SORT - Heap Sort"){
+	std::vector<int> v = {2, 3, 1, 6, 10, 9, -1, 20};
+	sort::heapSort(v);
+	std::vector<int> vComp = {-1, 1, 2, 3, 6, 9, 10, 20};
+	REQUIRE(v == vComp);
+}
+
+TEST_CASE("SORT - Merge Sort"){
+	std::vector<int> v = {2, 3, 1, 6, 10, 9, -1, 20};
+	sort::mergeSort(v);
+	std::vector<int> vComp = {-1, 1, 2, 3, 6, 9, 10, 20};
+	REQUIRE(v == vComp);
+}
+
+TEST_CASE("SORT - Quick Sort"){
+	std::vector<int> v = {2, 3, 1, 6, 10, 9, -1, 20};
+	sort::quickSort(v);
+	std::vector<int> vComp = {-1, 1, 2, 3, 6, 9, 10, 20};
+	REQUIRE(v == vComp);
+}

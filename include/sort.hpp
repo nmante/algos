@@ -21,7 +21,7 @@ void modifiedBubbleSort(std::vector<int> &arr);
 void selectionSort(std::vector<int> &arr);
 
 /**
- * Insertion Sort algorithm to sort a list in O(n) time
+ * Insertion Sort algorithm to sort a list in O(n) time, worst case O(n^2)
  */
 void insertionSort(std::vector<int> &arr);
 
