@@ -1,7 +1,12 @@
 #include "../include/search.hpp"
+#include <limits.h>
 
 namespace algos {
 namespace search {
+
+/*
+ * BINARY SEARCH
+ */
 
 int binarySearchIterative(std::vector<int> arr, int target){
 	int start = 0, end = (int)arr.size() - 1;
@@ -16,14 +21,20 @@ int binarySearchIterative(std::vector<int> arr, int target){
 			end = mid - 1;
 		}
 	}
+
 	return -1;
 }
 
 int binarySearchRecursiveHelper(std::vector<int> arr, int target, int start, int end){
+	if (start > end) {
+		return -1;
+	}
+
 	int mid = (start + end) / 2; 
 	if (target == arr[mid]) {
 		return mid;
 	}
+
 	return (target > arr[mid]) 
 		? binarySearchRecursiveHelper(arr, target, mid + 1, end) 
 		: binarySearchRecursiveHelper(arr, target, start, mid - 1);
@@ -50,6 +61,104 @@ int binarySearch(std::vector<int> arr, int target, ftype type){
 	
 	return result;
 }
+
+/*
+ * INTERPOLATION SEARCH
+ */
+
+int interpolationSearchIterative(std::vector<int> arr, int target){
+	int start = 0, end = arr.size() - 1;
+	while (end > start && arr[start] < target && arr[end] > target) {
+		int pos = start + (target - arr[start]) * (end - start)/(arr[end] - arr[start]);
+		if (target == arr[pos]){
+			return pos;
+		}else if (target > arr[pos]){
+			start = pos + 1;
+		}else {
+			end = pos - 1;
+		}
+	}
+	return -1;
+}
+
+int interpolationSearchRecursiveHelper(std::vector<int> arr, int target, int start, int end){
+	if (start > end) {
+		return -1;
+	}
+
+	int pos = start + (target - arr[start]) * (end - start)/(arr[end] - arr[start]);
+
+	if (target == arr[pos]){
+		return pos;
+	}
+
+	return (target > arr[pos]) 
+		? interpolationSearchRecursiveHelper(arr, target, pos + 1, end)
+		: interpolationSearchRecursiveHelper(arr, target, start, pos - 1);
+}
+
+int interpolationSearchRecursive(std::vector<int> arr, int target){
+	return interpolationSearchRecursiveHelper(arr, target, 0, arr.size() - 1);
+}
+
+int interpolationSearch(std::vector<int> arr, int target, ftype type){
+	/*
+	 * Linear Interpolation formula
+	 * y - y0   y1 - y0
+	 * ------ = -------
+	 * x - x0 = x1 - x0
+	 *
+	 * y = position or index we're searching for
+	 * x = value or target we're provided
+	 * x0 = value at index start
+	 * x1 = value at index end
+	 * y1 = position of end
+	 */
+	int result = -1;
+	switch (type) {
+		case ftype::recursive:
+			result = interpolationSearchRecursive(arr, target);
+		case ftype::iterative:
+			result = interpolationSearchIterative(arr, target);
+		default:
+			break;
+	}
+	return result;
+}
+
+/*
+ * K'th SMALLEST/LARGEST element in an unsorted array
+ */
+
+int kthSmallestSearch(std::vector<int> arr, int k){
+	// O(n), so we cant sort
+	// cant do double for loop
+	// has to be at most one loop
+	// maybe we use storage
+	
+	if (k > (int)arr.size()){
+		return -1;
+	}	
+	int value = -1;
+	// Brute force
+	for(int i = 0; i < (int)arr.size(); i++){
+		int numLessThan = 0;
+		for(int j = 0; j < (int)arr.size(); j++){
+			if (i == j){
+				continue;
+			}
+			if(arr[i] > arr[j]){
+				numLessThan++;
+			}
+		}
+		if (numLessThan == (k - 1)){
+			return arr[i];
+		}
+	}
+
+	return value;
+}
+
 
 }
 }

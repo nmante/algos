@@ -37,4 +37,4 @@ build
 
 # mac symbol directories
 *.dSYM
-
+*.swp
