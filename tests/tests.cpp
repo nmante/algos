@@ -46,3 +46,11 @@ TEST_CASE("SORT - Modified Bubble Sort"){
 	std::vector<int> vComp = {-1, 1, 2, 3, 6, 9, 10, 20};
 	REQUIRE(v == vComp);
 }
+
+TEST_CASE("SORT - Selection Sort"){
+	std::vector<int> v = {2, 3, 1, 6, 10, 9, -1, 20};
+	sort::selectionSort(v);
+	std::vector<int> vComp = {-1, 1, 2, 3, 6, 9, 10, 20};
+	REQUIRE(v == vComp);
+}
+

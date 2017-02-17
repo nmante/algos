@@ -33,5 +33,26 @@ void modifiedBubbleSort(std::vector<int> &arr){
 		}
 	}
 }
+
+void selectionSort(std::vector<int> &arr){
+	for(int i = 0; i < (int)arr.size(); i++){
+		int minIndex = i;
+		for(int j = i; j < (int)arr.size(); j++){
+			if(arr[j] < arr[minIndex]){
+				minIndex = j;
+			}
+		}
+		int tmp = arr[i];
+		arr[i] = arr[minIndex];
+		arr[minIndex] = tmp;
+	}
+}
+
+void insertionSort(std::vector<int> &arr){
+	
+}
+
+
+
 }
 }
