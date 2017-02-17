@@ -45,13 +45,13 @@ int binarySearchRecursive(std::vector<int> arr, int target){
 }
 
 
-int binarySearch(std::vector<int> arr, int target, ftype type){
+int binarySearch(std::vector<int> arr, int target, functype type){
 	int result = - 1;
 	switch (type) {
-		case ftype::recursive:
+		case functype::recursive:
 			result = binarySearchRecursive(arr, target);
 			break;
-		case ftype::iterative:
+		case functype::iterative:
 			result = binarySearchIterative(arr, target);
 			break;
 		default:
@@ -101,7 +101,7 @@ int interpolationSearchRecursive(std::vector<int> arr, int target){
 	return interpolationSearchRecursiveHelper(arr, target, 0, arr.size() - 1);
 }
 
-int interpolationSearch(std::vector<int> arr, int target, ftype type){
+int interpolationSearch(std::vector<int> arr, int target, functype type){
 	/*
 	 * Linear Interpolation formula
 	 * y - y0   y1 - y0
@@ -116,9 +116,9 @@ int interpolationSearch(std::vector<int> arr, int target, ftype type){
 	 */
 	int result = -1;
 	switch (type) {
-		case ftype::recursive:
+		case functype::recursive:
 			result = interpolationSearchRecursive(arr, target);
-		case ftype::iterative:
+		case functype::iterative:
 			result = interpolationSearchIterative(arr, target);
 		default:
 			break;
@@ -130,16 +130,18 @@ int interpolationSearch(std::vector<int> arr, int target, ftype type){
  * K'th SMALLEST/LARGEST element in an unsorted array
  */
 
-int kthSmallestSearch(std::vector<int> arr, int k){
-	// O(n), so we cant sort
-	// cant do double for loop
-	// has to be at most one loop
-	// maybe we use storage
-	
+int kthSmallest(std::vector<int> arr, int k){
+	/*
+	 * Options
+	 * 	- brute force in O(n^2)
+	 * 	- sort 'arr' pluck kth largest in NlogN time
+	 * 	- MaxHeap and pluck kth largest in n + klogn time 
+	 */
 	if (k > (int)arr.size()){
 		return -1;
 	}	
-	int value = -1;
+	int value = INT_MIN;
+
 	// Brute force
 	for(int i = 0; i < (int)arr.size(); i++){
 		int numLessThan = 0;
@@ -159,6 +161,17 @@ int kthSmallestSearch(std::vector<int> arr, int k){
 	return value;
 }
 
+int kthLargest(std::vector<int> arr, int k){
+	/*
+	 * Options
+	 * 	- brute force in O(n^2)
+	 * 	- sort 'arr' pluck kth largest in NlogN time
+	 * 	- MaxHeap and pluck kth largest in n + klogn time 
+	 */
+	int value = INT_MIN; 
+
+	return value;
+}
 
 }
 }

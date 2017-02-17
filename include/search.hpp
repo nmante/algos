@@ -7,9 +7,10 @@ namespace algos {
 namespace search {
 
 enum functype {
-       recursive = 'r', 
-       iterative = 'i' 
+	recursive = 'r', 
+	iterative = 'i'
 }; 
+
 
 /**
  * Conducts a binary search on a sorted array either iteratively 
@@ -17,11 +18,11 @@ enum functype {
  *
  * @param arr A sorted array of integers
  * @param target A value to search for in the array
- * @param ftype An enum type. Let's us choose recursive or iterative implementation
+ * @param functype An enum type. Let's us choose recursive or iterative implementation
  * 		default is iterative
  * @return Returns the index of the 'target', -1 if doesn't exist
  */
-int binarySearch(std::vector<int> arr, int target, ftype=ftype::iterative);
+int binarySearch(std::vector<int> arr, int target, functype=functype::iterative);
 
 /**
  * Conducts a interpolation search on a sorted array either iteratively 
@@ -29,12 +30,12 @@ int binarySearch(std::vector<int> arr, int target, ftype=ftype::iterative);
  *
  * @param arr A sorted array of integers
  * @param target A value to search for in the array
- * @param ftype An enum type. Let's us choose recursive or iterative implementation
+ * @param functype An enum type. Let's us choose recursive or iterative implementation
  * 		default is iterative
  *
  * @return Returns the index of the 'target', -1 if doesn't exist
  */
-int interpolationSearch(std::vector<int> arr, int target, ftype=ftype::iterative);
+int interpolationSearch(std::vector<int> arr, int target, functype=functype::iterative);
 
 /**
  * Search for the k'th smallest element in an unsorted Array in O(n) time
