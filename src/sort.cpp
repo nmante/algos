@@ -96,7 +96,7 @@ void mergeSort(std::vector<int> &arr){
 
 }
 
-void quickSort(std::vector<int &arr){
+void quickSort(std::vector<int> &arr){
 
 }
 
