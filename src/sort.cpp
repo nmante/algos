@@ -1,4 +1,5 @@
 #include "../include/sort.hpp"
+#include <iostream>
 
 namespace algos {
 namespace sort {
@@ -88,12 +89,68 @@ void insertionSort(std::vector<int> &arr){
 	}
 }
 
+/*
+ * Heap Sort - O(n*log(n)), unstable sort
+ */
 void heapSort(std::vector<int> &arr){
+
+}
+
+/*
+ * Merge Sort - O(n*log(n)), stable sort
+ */
+void merge(std::vector<int> &arr, int begin, int mid, int end){
+	// Create two temporary sub arrays
+	//std::vector<int> left = std::vector<int>(arr.begin(), arr.begin() + mid);
+	//std::vector<int> right = std::vector<int>(arr.begin() + mid, arr.begin() + end);
+	std::vector<int> left, right;
+
+	for(int k = begin; k <= mid; k++){
+		left.push_back(arr[k]);
+	}	
+	for(int k = mid + 1; k <= end; k++){
+		right.push_back(arr[k]);
+	}	
+	
+	int i = 0, j = 0, k = begin;
+
+	// Now iterate through both sub arrays
+	// Compare the beginning of each sub array, and choose the beginning
+	// that 'wins' to put back into the original array
+	while(i < (int)left.size() && j < (int)right.size()){
+		// insert 'winner' into original array
+		if(left[i] < right[j]){
+			arr[k++] = left[i++];
+		}else{
+			arr[k++] = right[j++];
+		}
+	}
+
+	// Copy any extra elements from the sub arrays over to the original
+	while (i < (int)left.size()){
+		arr[k++] = left[i++];
+	}
+	while (j < (int)right.size()){
+		arr[k++] = right[j++];
+	}
 	
 }
 
-void mergeSort(std::vector<int> &arr){
+void mergeSortHelper(std::vector<int> &arr, int begin, int end){
+	// Recursively divide the array into two parts
+	// Merge once we have 0 or 1 elements
+	if (begin < end){
+		int mid = (begin + end) / 2;
+		mergeSortHelper(arr, begin, mid);
+		mergeSortHelper(arr, mid + 1, end);
+		merge(arr, begin, mid, end);
+	}
+}
 
+void mergeSort(std::vector<int> &arr){
+	// Keep API simple, caller only needs to pass array
+	// Now pass along the array and it's beginning/end
+	mergeSortHelper(arr, 0, (int)arr.size() - 1);
 }
 
 void quickSort(std::vector<int> &arr){

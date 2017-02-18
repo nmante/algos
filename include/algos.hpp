@@ -3,5 +3,6 @@
 
 #include "search.hpp"
 #include "sort.hpp"
+#include "utils.hpp"
 
 #endif // __ALGOS_HPP__

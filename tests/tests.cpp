@@ -3,6 +3,11 @@
 #include "../include/algos.hpp"
 using namespace algos;
 
+TEST_CASE("UTILS - Vector To String"){
+	std::vector<int> v = {-1, 0, 2, 4};
+	REQUIRE("-1, 0, 2, 4" == utils::vectorToString(v));
+}
+
 TEST_CASE("SEARCH - Binary Search - Iterative"){
 	std::vector<int> v = {-1, 0, 2, 4};
 	int index = search::binarySearch(v, 0);
@@ -69,6 +74,10 @@ TEST_CASE("SORT - Heap Sort"){
 }
 
 TEST_CASE("SORT - Merge Sort"){
+	std::vector<int> v2 = {2, 3, 1, 6, 10, 9, 20};
+	sort::mergeSort(v2);
+	std::vector<int> v2Comp = {1, 2, 3, 6, 9, 10, 20};
+	REQUIRE(v2 == v2Comp);
 	std::vector<int> v = {2, 3, 1, 6, 10, 9, -1, 20};
 	sort::mergeSort(v);
 	std::vector<int> vComp = {-1, 1, 2, 3, 6, 9, 10, 20};
