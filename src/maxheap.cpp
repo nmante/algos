@@ -1,5 +1,7 @@
 #include "../include/maxheap.hpp"
+#include "../include/utils.hpp"
 #include <limits.h>
+#include <iostream>
 
 namespace algos {
 namespace ds {
@@ -7,21 +9,25 @@ namespace ds {
 bool MaxHeap::isLeaf(int nodeIndex) const {
 
 	// Checking for a node outside array bounds
-	if (nodeIndex >= (int) this->array.size() ||
+	if (nodeIndex >= (int)this->array.size() ||
 			nodeIndex < 0){
 		return false;
 	}
 
-	// If we are the last right or left child, we're a leaf 
-	if (((int)this->array.size() - 1) == nodeIndex ||
-		(int)this->array.size() - 2 == nodeIndex){
+	// We are a leaf, if our calculated child indices are greater
+	// than the size of the array
+	int leftInd = 2*nodeIndex + 1;
+	int rightInd = 2*nodeIndex + 2;
+	
+	// If we don't have a left and right child, we are a leaf
+	if(leftInd >= this->size() && rightInd >= this->size()){
 		return true;
 	}
 
 	return false;
 }
 
-int MaxHeap::getParentIndex(int nodeIndex) {
+int MaxHeap::getParentIndex(int nodeIndex) const{
 	// for node i, it's children are
 	// left = 2*i + 1, and right = 2*i - 1
 	// That means the parent is the inverse
@@ -46,32 +52,24 @@ int MaxHeap::getParentIndex(int nodeIndex) {
 	return -1;
 }
 
-int MaxHeap::getRightChildIndex(int nodeIndex) {
-
-	// Leaf nodes can't have children
-	if (this->isLeaf(nodeIndex)) {
-		return -1;
-	}
-
-	// Must have two items in array after 'nodeIndex' to have a right child
-	if (nodeIndex <= ((int)this->array.size() - 3)){
-		return (2*nodeIndex + 2);
-	}
-
-	return -1;
-}
-
-int MaxHeap::getLeftChildIndex(int nodeIndex) {
+int MaxHeap::getRightChildIndex(int nodeIndex) const{
 	// Leaf nodes can't have children
 	if(this->isLeaf(nodeIndex)){
 		return -1;
 	}
 
-	if (nodeIndex <= ((int)this->array.size() - 3)){
-		return (2*nodeIndex + 1);
+	int index = 2*nodeIndex + 2;
+	return (index >= this->size()) ? -1 : index;
+}
+
+int MaxHeap::getLeftChildIndex(int nodeIndex) const{
+	// Leaf nodes can't have children
+	if(this->isLeaf(nodeIndex)){
+		return -1;
 	}
 
-	return -1;
+	int index = 2*nodeIndex + 1;
+	return (index >= this->size()) ? -1 : index;
 }
 
 
@@ -93,7 +91,7 @@ int MaxHeap::removeMax(){
 	this->array[0] = last;  
 
 	// Now update the heap
-	this->MoveNode(0);
+	this->heapDown(0);
 
 	return max;
 
@@ -113,22 +111,26 @@ void MaxHeap::buildMaxHeap(){
 	// Take element
 	// As we iterate check to see if child is bigger
 	// if it is, swap child with parent 
-	for(int i = (int)this->array.size() - 1; i >= 0; i--){
-		this->MoveNode(i);
+	for(int i = this->size() - 1; i >= 0; i--){
+		this->heapDown(i);
 	}
 }
 
-void MaxHeap::MoveNode(int nodeIndex){
+void MaxHeap::heapDown(int nodeIndex){
 	// Only do heapify on a non child node
 	while (!isLeaf(nodeIndex)) {
 		// Find the bigger child node
+		std::cout << "Node Index: " << nodeIndex << std::endl;
+		std::cout << "size: " << this->size() << std::endl;
 		int maxChildIndex = this->getLeftChildIndex(nodeIndex);
-		if ( (maxChildIndex < this->getNumNodes() - 1) 
+		if ( maxChildIndex < this->size() - 1 
 		&& this->array[maxChildIndex] < this->array[maxChildIndex + 1]){ 
 			maxChildIndex++;
 		}
+		std::cout << "max child index: " << maxChildIndex << std::endl;
 
 		// Child bigger, so we're done
+		std::cout << "val: " << this->array[maxChildIndex] << std::endl;
 		if(this->array[nodeIndex] >= this->array[maxChildIndex]){
 			return;
 		}
@@ -136,8 +138,9 @@ void MaxHeap::MoveNode(int nodeIndex){
 		std::swap(this->array[nodeIndex],
 			this->array[maxChildIndex]);
 
-		nodeIndex = maxChildIndex;
+		std::cout << "array: " << algos::utils::vectorToString(this->array) << std::endl;
 
+		nodeIndex = maxChildIndex;
 	}
 
 }

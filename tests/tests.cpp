@@ -1,4 +1,3 @@
-#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "../include/algos.hpp"
 using namespace algos;
@@ -66,7 +65,32 @@ TEST_CASE("SORT - Insertion Sort"){
 	REQUIRE(v == vComp);
 }
 
-TEST_CASE("SORT - Heap Sort"){
+TEST_CASE("DATA STRUCTURES - Max Heap"){
+	/*
+	 * 			20	
+	 * 		2		1
+	 * 	3	 10	      9 	-1
+	 * 6 
+	 */
+	std::vector<int> v = {2, 3, 1, 6, 10, 9, -1, 20};
+	ds::MaxHeap mh(v);
+	REQUIRE(mh.size() == 8);
+
+	SECTION("check isLeaf function"){
+		bool isLeaf;
+		for(int i = 0; i < mh.size(); i++){
+			isLeaf = mh.isLeaf(i);
+			if(i >= 4 && i <= 7){
+				REQUIRE(isLeaf == true);
+			}else{
+				REQUIRE(isLeaf == false);
+			}
+		}
+	}
+	
+}
+
+TEST_CASE("SORT - Max Heap Sort"){
 	std::vector<int> v = {2, 3, 1, 6, 10, 9, -1, 20};
 	sort::heapSort(v);
 	std::vector<int> vComp = {-1, 1, 2, 3, 6, 9, 10, 20};

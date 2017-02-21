@@ -95,13 +95,20 @@ void insertionSort(std::vector<int> &arr){
  * Heap Sort - O(n*log(n)), unstable sort
  */
 void heapSort(std::vector<int> &arr){
-	std::string s1 = algos::utils::vectorToString(arr);
 	using namespace algos;
 	ds::MaxHeap mh(arr);
 	auto arr2 = mh.getArray();
+
+	std::vector<int> sortedList;
 	std::string s = algos::utils::vectorToString(arr2);
-	std::cout << s1 << std::endl;
-	std::cout << s << std::endl;
+	while (mh.size() > 0){
+		sortedList.insert(sortedList.begin(), mh.removeMax());
+	}
+	arr = sortedList;
+	std::string sorted = algos::utils::vectorToString(sortedList);
+	std::cout << "max heap array: " << s << std::endl;
+	std::cout << "sorted list: " << sorted << std::endl; 
+
 }
 
 /*

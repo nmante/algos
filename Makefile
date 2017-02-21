@@ -53,13 +53,15 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT) $(INCDIR)/%.$(INCEXT)
 	@echo "Making objects..."
 	$(CC) $(DEBUG) $(CFLAGS) $(INC) -c -o $@ $< 
 
-$(TESTS): $(TESTDIR)/tests.cpp
+$(TESTS): $(BUILDDIR)/tests-main.o $(TESTDIR)/tests.cpp
 	echo "Building Tests..."
 	if ! [ -a $(TESTDIR)/catch.hpp ]; then wget -O $(CATCHSRC) $(CATCHURL); fi;
 	@mkdir -p $(BINDIR)
-	$(CC) $(DEBUG) $(CFLAGS) $(INC) $(OBJS) $(TESTDIR)/tests.cpp -o $(TESTEXE)
+	$(CC) $(DEBUG) $(CFLAGS) $(INC) $(OBJS) $(BUILDDIR)/tests-main.o $(TESTDIR)/tests.cpp -o $(TESTEXE)
 	./$(TESTEXE)
 
+$(BUILDDIR)/tests-main.o: $(TESTDIR)/tests-main.cpp
+	$(CC) $(TESTDIR)/tests-main.cpp -c -o $(BUILDDIR)/tests-main.o
 clean:
 	@echo "Cleaning..."
 	rm -rf $(BUILDDIR) $(EXE) $(TESTEXE) $(LIBEXE) $(BINDIR)/*.dSYM

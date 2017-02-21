@@ -8,7 +8,7 @@ namespace ds {
 class MaxHeap {
 private:
 	std::vector<int> array;
-	void MoveNode(int nodeIndex);
+	void heapDown(int nodeIndex);
 public:
 	MaxHeap(){}
 	MaxHeap(std::vector<int> arr) : array(arr){ 
@@ -27,13 +27,13 @@ public:
 	~MaxHeap(){}
 
 	bool isLeaf(int nodeIndex) const;
-	int getParentIndex(int nodeIndex);
-	int getRightChildIndex(int nodeIndex);
-	int getLeftChildIndex(int nodeIndex);
+	int getParentIndex(int nodeIndex) const;
+	int getRightChildIndex(int nodeIndex) const;
+	int getLeftChildIndex(int nodeIndex) const;
 
 	bool isEmpty() const;
 	std::vector<int> getArray() const { return array; }
-	int getNumNodes() const { return (int)this->array.size(); }
+	int size() const { return (int)this->array.size(); }
 	
 	int getMax();
 	int removeMax();
