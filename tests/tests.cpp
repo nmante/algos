@@ -90,3 +90,4 @@ TEST_CASE("SORT - Quick Sort"){
 	std::vector<int> vComp = {-1, 1, 2, 3, 6, 9, 10, 20};
 	REQUIRE(v == vComp);
 }
+

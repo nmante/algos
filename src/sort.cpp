@@ -1,5 +1,7 @@
 #include "../include/sort.hpp"
 #include <iostream>
+#include "../include/maxheap.hpp"
+#include "../include/utils.hpp"
 
 namespace algos {
 namespace sort {
@@ -93,7 +95,13 @@ void insertionSort(std::vector<int> &arr){
  * Heap Sort - O(n*log(n)), unstable sort
  */
 void heapSort(std::vector<int> &arr){
-
+	std::string s1 = algos::utils::vectorToString(arr);
+	using namespace algos;
+	ds::MaxHeap mh(arr);
+	auto arr2 = mh.getArray();
+	std::string s = algos::utils::vectorToString(arr2);
+	std::cout << s1 << std::endl;
+	std::cout << s << std::endl;
 }
 
 /*
