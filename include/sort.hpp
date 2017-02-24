@@ -40,6 +40,11 @@ void mergeSort(std::vector<int> &arr);
  */
 void quickSort(std::vector<int> &arr);
 
+/**
+ * Quick sort algorithm iterative 
+ */
+void quickSortIterative(std::vector<int> &arr);
+
 }
 }
 

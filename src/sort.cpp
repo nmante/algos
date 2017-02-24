@@ -100,14 +100,10 @@ void heapSort(std::vector<int> &arr){
 	auto arr2 = mh.getArray();
 
 	std::vector<int> sortedList;
-	std::string s = algos::utils::vectorToString(arr2);
 	while (mh.size() > 0){
 		sortedList.insert(sortedList.begin(), mh.removeMax());
 	}
 	arr = sortedList;
-	std::string sorted = algos::utils::vectorToString(sortedList);
-	std::cout << "max heap array: " << s << std::endl;
-	std::cout << "sorted list: " << sorted << std::endl; 
 
 }
 
@@ -168,10 +164,72 @@ void mergeSort(std::vector<int> &arr){
 	mergeSortHelper(arr, 0, (int)arr.size() - 1);
 }
 
-void quickSort(std::vector<int> &arr){
+/*
+ * Quick Sort
+ */
 
+int partition(std::vector<int> &arr, int low, int high){
+	// from low position to high position, 
+	int left = low, pivot = low;
+	int pivotItem = arr[pivot];
+	int right = high;
+
+	while (left < right) {
+		while( arr[left] <= pivotItem ) { left++; } 
+		while( arr[right] > pivotItem ) { right--; } 
+		if (left < right)
+			std::swap(arr[left], arr[right]);
+
+	}
+
+	arr[low] = arr[right];
+	arr[right] = pivotItem;
+	return right;
 }
 
+void quickSortHelper(std::vector<int> &arr, int low, int high){
+	if (high > low) {
+		// Partition
+		int pivot = partition(arr, low, high);
+		
+		// Sort left half
+		std::cout << "high left: " << pivot - 1 << std::endl;
+		quickSortHelper(arr, low, pivot - 1);
+		
+		// sort right half
+		std::cout << "low right: " << pivot + 1 << std::endl;
+		quickSortHelper(arr, pivot + 1, high);
+		
+	}
+}
+
+void quickSortIterative(std::vector<int> &arr){
+	int low = 0;
+	int high = arr.size() - 1;
+
+	int highLeft = high; // End of the left sub array
+	int lowRight = low; // Beginning of the right sub array	
+	std::cout << "HELLO ITER" << std::endl;
+	
+	while (low < highLeft || lowRight < high){
+		// Partition left sub array until it's beginning and end cross
+		std::cout << "high left: " << highLeft - 1 << std::endl;
+		std::cout << "high left val: " << arr[highLeft - 1] << std::endl;
+		if (low < highLeft)
+			highLeft = partition(arr, low, highLeft - 1);
+
+		// Partition left sub array until it's beginning and end cross
+		std::cout << "low right: " << lowRight + 1<< std::endl;
+		std::cout << "low right val: " << arr[lowRight + 1] << std::endl;
+		if (lowRight < high)
+			lowRight = partition(arr, lowRight + 1, high);
+	}
+}
+
+void quickSort(std::vector<int> &arr){
+	std::cout << "Hello RECURSE" << std::endl;
+	quickSortHelper(arr, 0, arr.size() - 1);
+}
 
 }
 }

@@ -108,10 +108,75 @@ TEST_CASE("SORT - Merge Sort"){
 	REQUIRE(v == vComp);
 }
 
-TEST_CASE("SORT - Quick Sort"){
-	std::vector<int> v = {2, 3, 1, 6, 10, 9, -1, 20};
-	sort::quickSort(v);
-	std::vector<int> vComp = {-1, 1, 2, 3, 6, 9, 10, 20};
-	REQUIRE(v == vComp);
+TEST_CASE("SORT - Quick Sort Recursive"){
+	SECTION("Array of 8 numbers with a negative number"){
+		std::vector<int> v = {2, 3, 1, 6, 10, 9, -1, 20};
+		sort::quickSort(v);
+		std::vector<int> vComp = {-1, 1, 2, 3, 6, 9, 10, 20};
+		REQUIRE(v == vComp);
+	}
+	SECTION("Array of 8 positive numbers"){
+		std::vector<int> v = {2, 3, 1, 6, 10, 9, 4, 20};
+		sort::quickSort(v);
+		std::vector<int> vComp = {1, 2, 3, 4, 6, 9, 10, 20};
+		REQUIRE(v == vComp);
+	}
+	SECTION("Array of 1 number"){
+		std::vector<int> v = {2};
+		sort::quickSort(v);
+		std::vector<int> vComp = {2};
+		REQUIRE(v == vComp);
+	}
+	SECTION("Array of 8 negative numbers"){
+		std::vector<int> v = {-2, -3, -30, -7, -10, -9, -1, -20};
+		sort::quickSort(v);
+		std::vector<int> vComp = {-30, -20, -10, -9, -7, -3, -2, -1};
+		REQUIRE(v == vComp);
+	}
+	SECTION("Array of sorted numbers"){
+		std::vector<int> v = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+		sort::quickSort(v);
+		std::vector<int> vComp = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+		REQUIRE(v == vComp);
+	}
+	SECTION("Huge array of unsorted integers"){
+		std::vector<int> v = {20, 30, -1, 50, 100, 2, 5, 6, 59, 210, 54, 55, 67, 99, 1002, 40, 42, 31, 65, 77, -20, -52, -73, 301, 66, 32, -57};
+		sort::quickSort(v);
+		std::vector<int> vComp = {-73, -57, -52, -20, -1, 2, 5, 6, 20, 30, 31, 32, 40, 42, 50, 54, 55, 59, 65, 66, 67, 77, 99, 100, 210, 301, 1002};
+		REQUIRE(v == vComp);
+	}
 }
 
+TEST_CASE("SORT - Quick Sort Iterative"){
+	SECTION("Array of 8 numbers with negative number"){
+		std::vector<int> v = {2, 3, 1, 6, 10, 9, -1, 20};
+		sort::quickSortIterative(v);
+		std::vector<int> vComp = {-1, 1, 2, 3, 6, 9, 10, 20};
+		REQUIRE(v == vComp);
+	}
+	SECTION("Array of 8 positive numbers"){
+		std::vector<int> v = {2, 3, 1, 6, 10, 9, 4, 20};
+		sort::quickSortIterative(v);
+		std::vector<int> vComp = {1, 2, 3, 4, 6, 9, 10, 20};
+		REQUIRE(v == vComp);
+	}
+	SECTION("Array of 1 number"){
+		std::vector<int> v = {2};
+		sort::quickSortIterative(v);
+		std::vector<int> vComp = {2};
+		REQUIRE(v == vComp);
+	}
+	SECTION("Array of 8 negative numbers"){
+		std::vector<int> v = {-2, -3, -30, -7, -10, -9, -1, -20};
+		sort::quickSortIterative(v);
+		std::vector<int> vComp = {-30, -20, -10, -9, -7, -3, -2, -1};
+		REQUIRE(v == vComp);
+	}
+	SECTION("Huge array of unsorted integers"){
+		std::vector<int> v = {20, 30, -1, 50, 100, 2, 5, 6, 59, 210, 54, 55, 67, 99, 1002, 40, 42, 31, 65, 77, -20, -52, -73, 301, 66, 32, -57};
+		sort::quickSortIterative(v);
+		std::vector<int> vComp = {-73, -57, -52, -20, -1, 2, 5, 6, 20, 30, 31, 32, 40, 42, 50, 54, 55, 59, 65, 66, 67, 77, 99, 100, 210, 301, 1002};
+		REQUIRE(v == vComp);
+	}
+
+}

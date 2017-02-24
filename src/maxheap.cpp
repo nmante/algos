@@ -120,25 +120,19 @@ void MaxHeap::heapDown(int nodeIndex){
 	// Only do heapify on a non child node
 	while (!isLeaf(nodeIndex)) {
 		// Find the bigger child node
-		std::cout << "Node Index: " << nodeIndex << std::endl;
-		std::cout << "size: " << this->size() << std::endl;
 		int maxChildIndex = this->getLeftChildIndex(nodeIndex);
 		if ( maxChildIndex < this->size() - 1 
 		&& this->array[maxChildIndex] < this->array[maxChildIndex + 1]){ 
 			maxChildIndex++;
 		}
-		std::cout << "max child index: " << maxChildIndex << std::endl;
 
 		// Child bigger, so we're done
-		std::cout << "val: " << this->array[maxChildIndex] << std::endl;
 		if(this->array[nodeIndex] >= this->array[maxChildIndex]){
 			return;
 		}
 		// If the child is bigger, swap with parent
 		std::swap(this->array[nodeIndex],
 			this->array[maxChildIndex]);
-
-		std::cout << "array: " << algos::utils::vectorToString(this->array) << std::endl;
 
 		nodeIndex = maxChildIndex;
 	}
