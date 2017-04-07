@@ -97,13 +97,24 @@ TEST_CASE("SORT - Max Heap Sort"){
 	REQUIRE(v == vComp);
 }
 
-TEST_CASE("SORT - Merge Sort"){
+TEST_CASE("SORT - Merge Sort Recursive"){
 	std::vector<int> v2 = {2, 3, 1, 6, 10, 9, 20};
 	sort::mergeSort(v2);
 	std::vector<int> v2Comp = {1, 2, 3, 6, 9, 10, 20};
 	REQUIRE(v2 == v2Comp);
 	std::vector<int> v = {2, 3, 1, 6, 10, 9, -1, 20};
 	sort::mergeSort(v);
+	std::vector<int> vComp = {-1, 1, 2, 3, 6, 9, 10, 20};
+	REQUIRE(v == vComp);
+}
+
+TEST_CASE("SORT - Merge Sort Iterative"){
+	std::vector<int> v2 = {2, 3, 1, 6, 10, 9, 20};
+	sort::mergeSortIterative(v2);
+	std::vector<int> v2Comp = {1, 2, 3, 6, 9, 10, 20};
+	REQUIRE(v2 == v2Comp);
+	std::vector<int> v = {2, 3, 1, 6, 10, 9, -1, 20};
+	sort::mergeSortIterative(v);
 	std::vector<int> vComp = {-1, 1, 2, 3, 6, 9, 10, 20};
 	REQUIRE(v == vComp);
 }
@@ -180,3 +191,5 @@ TEST_CASE("SORT - Quick Sort Iterative"){
 	}
 
 }
+
+

@@ -17,5 +17,11 @@ std::string vectorToString(std::vector<int> &arr){
 	return result;
 }
 
+int popVectorStack(std::vector<int> &s){
+	int val = s.back();
+	s.pop_back();
+	return val;
+}
+
 }
 }

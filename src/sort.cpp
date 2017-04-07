@@ -2,6 +2,7 @@
 #include <iostream>
 #include "../include/maxheap.hpp"
 #include "../include/utils.hpp"
+#include <queue>
 
 namespace algos {
 namespace sort {
@@ -152,13 +153,27 @@ void mergeSortHelper(std::vector<int> &arr, int begin, int end){
 	// Merge once we have 0 or 1 elements
 	if (begin < end){
 		int mid = (begin + end) / 2;
+
 		mergeSortHelper(arr, begin, mid);
 		mergeSortHelper(arr, mid + 1, end);
 		merge(arr, begin, mid, end);
 	}
 }
 
+
+void mergeSortIterative(std::vector<int> &arr){
+	for(int width = 1; width < (int)arr.size(); width *= 2){
+		for(int i = 0; i < (int)arr.size() - 1; i += 2*width){
+			int left = i;
+			int right = std::min(i + 2*width - 1, (int)arr.size() - 1);
+			int mid = i + width - 1;
+			merge(arr, left, mid, right);
+		}
+	}
+}
+
 void mergeSort(std::vector<int> &arr){
+	// waterbottle     lewaterbottlewaterbott
 	// Keep API simple, caller only needs to pass array
 	// Now pass along the array and it's beginning/end
 	mergeSortHelper(arr, 0, (int)arr.size() - 1);
@@ -187,48 +202,52 @@ int partition(std::vector<int> &arr, int low, int high){
 	return right;
 }
 
+/*
+ * Recursive quick sort
+ */
+
 void quickSortHelper(std::vector<int> &arr, int low, int high){
 	if (high > low) {
 		// Partition
 		int pivot = partition(arr, low, high);
 		
 		// Sort left half
-		std::cout << "high left: " << pivot - 1 << std::endl;
 		quickSortHelper(arr, low, pivot - 1);
 		
 		// sort right half
-		std::cout << "low right: " << pivot + 1 << std::endl;
 		quickSortHelper(arr, pivot + 1, high);
-		
-	}
-}
-
-void quickSortIterative(std::vector<int> &arr){
-	int low = 0;
-	int high = arr.size() - 1;
-
-	int highLeft = high; // End of the left sub array
-	int lowRight = low; // Beginning of the right sub array	
-	std::cout << "HELLO ITER" << std::endl;
-	
-	while (low < highLeft || lowRight < high){
-		// Partition left sub array until it's beginning and end cross
-		std::cout << "high left: " << highLeft - 1 << std::endl;
-		std::cout << "high left val: " << arr[highLeft - 1] << std::endl;
-		if (low < highLeft)
-			highLeft = partition(arr, low, highLeft - 1);
-
-		// Partition left sub array until it's beginning and end cross
-		std::cout << "low right: " << lowRight + 1<< std::endl;
-		std::cout << "low right val: " << arr[lowRight + 1] << std::endl;
-		if (lowRight < high)
-			lowRight = partition(arr, lowRight + 1, high);
 	}
 }
 
 void quickSort(std::vector<int> &arr){
-	std::cout << "Hello RECURSE" << std::endl;
 	quickSortHelper(arr, 0, arr.size() - 1);
+}
+
+/*
+ * Iterative solution for quick sort
+ */
+
+void quickSortIterative(std::vector<int> &arr){
+	std::vector<int> stack;
+	int low = 0, high = arr.size() - 1;
+	stack.push_back(low);
+	stack.push_back(high);
+	while(stack.size() > 0){
+		high = utils::popVectorStack(stack);
+		low = utils::popVectorStack(stack);
+
+		int pivot = partition(arr, low, high);
+
+		if (low < pivot - 1){
+			stack.push_back(low);
+			stack.push_back(pivot - 1);
+		}
+
+		if (pivot + 1 < high) {
+			stack.push_back(pivot + 1);
+			stack.push_back(high);
+		}
+	}
 }
 
 }

@@ -36,6 +36,18 @@ void heapSort(std::vector<int> &arr);
 void mergeSort(std::vector<int> &arr);
 
 /**
+ * Merge Sort algorithm to sort a list in O(n*log(n)) time
+ */
+
+typedef enum {
+	stack,
+	queue,
+	normal
+} IterativeType;
+
+void mergeSortIterative(std::vector<int> &arr);
+
+/**
  * Quick sort algorithm to sort a list in O(n*log(n)) time
  */
 void quickSort(std::vector<int> &arr);
