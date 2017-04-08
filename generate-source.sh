@@ -18,5 +18,5 @@ echo "}" >> $header
 echo "#endif // __$upper""HPP__" >> $header
 
 
-echo "#include ../$header" >> $source
+echo '#include "../$header"' >> $source
 echo "#include <iostream>" >> $source

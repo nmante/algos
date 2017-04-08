@@ -5,5 +5,6 @@
 #include "sort.hpp"
 #include "utils.hpp"
 #include "maxheap.hpp"
+#include "graph.hpp"
 
 #endif // __ALGOS_HPP__

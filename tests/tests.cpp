@@ -192,4 +192,35 @@ TEST_CASE("SORT - Quick Sort Iterative"){
 
 }
 
+TEST_CASE("GRAPH - BFS"){
+	graph::Graph g({"a", "b", "c", "d", "e", "f", "g", "h"});
+	g.addEdge("a", "b");
+	g.addEdge("a", "c");
+	g.addEdge("a", "d");
+	g.addEdge("b", "e");
+	g.addEdge("b", "f");
+	g.addEdge("f", "g");
+	std::vector<std::string> p( {"a", "b", "f", "g"}); 
+	std::vector<std::string> res = g.bfs("a", "g");
+	REQUIRE(p == res);
+	p = {"a", "b", "e"};
+	REQUIRE(p == g.bfs("a", "e"));
+	p = {"b", "f"};
+	REQUIRE(p == g.bfs("b", "f"));
+}
 
+TEST_CASE("GRAPH - DFS"){
+	graph::Graph g({"a", "b", "c", "d", "e", "f", "g", "h"});
+	g.addEdge("a", "b");
+	g.addEdge("a", "c");
+	g.addEdge("a", "d");
+	g.addEdge("b", "e");
+	g.addEdge("b", "f");
+	g.addEdge("f", "g");
+	std::vector<std::string> p( {"a", "b", "f", "g"}); 
+	REQUIRE(p == g.dfs("a", "g"));
+	p = {"a", "b", "e"};
+	REQUIRE(p == g.dfs("a", "e"));
+	p = {"b", "f"};
+	REQUIRE(p == g.dfs("b", "f"));
+}
