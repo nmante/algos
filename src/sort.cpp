@@ -173,7 +173,6 @@ void mergeSortIterative(std::vector<int> &arr){
 }
 
 void mergeSort(std::vector<int> &arr){
-	// waterbottle     lewaterbottlewaterbott
 	// Keep API simple, caller only needs to pass array
 	// Now pass along the array and it's beginning/end
 	mergeSortHelper(arr, 0, (int)arr.size() - 1);

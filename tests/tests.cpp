@@ -224,3 +224,13 @@ TEST_CASE("GRAPH - DFS"){
 	p = {"b", "f"};
 	REQUIRE(p == g.dfs("b", "f"));
 }
+
+TEST_CASE("NODE"){
+	using namespace trees;
+	Node<int> n(3);
+	Node<int> n2(4);
+	n.left = Node<int>::NodePtr(new Node<int>(5));  
+	REQUIRE(n.left->key == 5);
+	REQUIRE(n2.key == 4);
+
+}

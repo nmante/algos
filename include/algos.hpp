@@ -6,5 +6,7 @@
 #include "utils.hpp"
 #include "maxheap.hpp"
 #include "graph.hpp"
+#include "node.hpp"
+#include "avlnode.hpp"
 
 #endif // __ALGOS_HPP__
