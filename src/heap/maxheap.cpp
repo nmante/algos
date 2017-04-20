@@ -1,5 +1,5 @@
-#include "../include/maxheap.hpp"
-#include "../include/utils.hpp"
+#include "../../include/heap/maxheap.hpp"
+#include "../../include/utils.hpp"
 #include <limits.h>
 #include <iostream>
 

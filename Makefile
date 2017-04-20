@@ -10,6 +10,8 @@ INCDIR := include
 SRCDIR := src
 TESTDIR := tests
 BUILDDIR := build
+SRCSUBDIRS := $(shell find $(SRCDIR) -type d)
+BUILDSUBDIRS := $(patsubst $(SRCDIR)/%, $(BUILDDIR)/%, $(SRCSUBDIRS))
 BINDIR := bin
 
 # Targets
@@ -33,7 +35,6 @@ INC := -I$(INCDIR)
 CATCHURL := https://raw.githubusercontent.com/philsquared/Catch/master/single_include/catch.hpp
 CATCHSRC := $(TESTDIR)/catch.hpp
 
-
 all: $(APP) $(LIBRARY) $(TESTS)
 	@echo "Building all targets..."
 
@@ -48,9 +49,10 @@ $(LIBRARY): $(OBJS)
 	ar ru $(LIBEXE) $(OBJS)
 	ranlib $(LIBEXE) 
 	
+
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT) $(INCDIR)/%.$(INCEXT)
-	@mkdir -p $(BUILDDIR)
 	@echo "Making objects..."
+	@mkdir -p $(BUILDSUBDIRS)
 	$(CC) $(DEBUG) $(CFLAGS) $(INC) -c -o $@ $< 
 
 $(TESTS): $(BUILDDIR)/tests-main.o $(TESTDIR)/tests.cpp

@@ -4,9 +4,8 @@
 #include "search.hpp"
 #include "sort.hpp"
 #include "utils.hpp"
-#include "maxheap.hpp"
+#include "heap/maxheap.hpp"
 #include "graph.hpp"
-#include "node.hpp"
-#include "avlnode.hpp"
+#include "tree/avltree.hpp"
 
 #endif // __ALGOS_HPP__

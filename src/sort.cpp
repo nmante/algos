@@ -1,6 +1,6 @@
 #include "../include/sort.hpp"
 #include <iostream>
-#include "../include/maxheap.hpp"
+#include "../include/heap/maxheap.hpp"
 #include "../include/utils.hpp"
 #include <queue>
 
