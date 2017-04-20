@@ -112,7 +112,7 @@ private:
 
 		if(tmp->parent != nullptr){
 			if(tmp->parent->right == a){
-				tmp->parent->right = a;
+				tmp->parent->right = tmp;
 			}else{
 				tmp->parent->left = tmp;
 			}
@@ -141,7 +141,7 @@ private:
 
 		if(tmp->parent != nullptr){
 			if(tmp->parent->right == a){
-				tmp->parent->right = a;
+				tmp->parent->right = tmp;
 			}else{
 				tmp->parent->left = tmp;
 			}
