@@ -227,10 +227,15 @@ TEST_CASE("GRAPH - DFS"){
 
 TEST_CASE("TREES - AVLTree"){
 	trees::AVLTree<int> t;
-	t.insert(3);
-	t.insert(6);
-	t.insert(1);
-	t.printBalance();
-	t.printTree(trees::PrintType::inOrderPrint);
-	
+	bool insert3 = t.insert(3);
+	bool insert6 = t.insert(6);
+	bool insert1 = t.insert(1);
+	REQUIRE(insert3 == true);
+	REQUIRE(insert6 == true);
+	REQUIRE(insert1 == true);
+	insert3 = t.insert(3);
+	REQUIRE(insert3 == false);
+	t.deleteKey(3);
+	insert3 = t.insert(3);
+	REQUIRE(insert3 == true);
 }
