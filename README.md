@@ -41,21 +41,21 @@ This contains a list of data structures and algorithms in this library. This lis
 
 #### <div id="ds">Data Structures</div>
 
-- <div id="graph">Graphs</div>
-- <div id="tree">Trees</div>
-	- <div id="avl">AVL Trees</div>
-	- <div id="rb">Red Black</div>
-- <div id="heap">Heaps</div>
+- Graphs
+- Trees
+	- AVL Trees
+	- Red Black Trees
+- Heaps
 	- Min Heap
 	- Max Heap
 
 #### Algorithms
 
-- <div id="search">Search</div>
+- Search
 	- Binary
 	- Interpolative
 	- Kth Largest
-- <div id="sort">Sorting</div>
+- Sorting
 	- MergeSort
 	- Insertion Sort
 	- Heap Sort
