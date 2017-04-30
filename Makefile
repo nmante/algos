@@ -5,6 +5,9 @@ CC := g++
 DEBUG := -g
 CFLAGS := -std=c++11
 
+# Prefix
+PREFIX := /usr/local
+
 # Directories
 INCDIR := include
 SRCDIR := src
@@ -48,7 +51,6 @@ $(LIBRARY): $(OBJS)
 	@mkdir -p $(BINDIR)
 	ar ru $(LIBEXE) $(OBJS)
 	ranlib $(LIBEXE) 
-	
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT) $(INCDIR)/%.$(INCEXT)
 	@echo "Making objects..."
@@ -64,9 +66,23 @@ $(TESTS): $(BUILDDIR)/tests-main.o $(TESTDIR)/tests.cpp
 
 $(BUILDDIR)/tests-main.o: $(TESTDIR)/tests-main.cpp
 	$(CC) $(TESTDIR)/tests-main.cpp -c -o $(BUILDDIR)/tests-main.o
+
+.PHONY: install
+install: $(LIBEXE)
+	@echo "Installing headers and library..."
+	mkdir -p $(PREFIX)/lib
+	install -m 0755 $(LIBEXE) $(PREFIX)/lib
+	mkdir -p $(PREFIX)/include/algos
+	cp -r $(INCDIR)/* $(PREFIX)/include/algos 
+
+.PHONY: uninstall
+uninstall: $(LIBEXE)
+	@echo "Uninstalling headers and library..."
+	rm -f $(PREFIX)/lib/libalgos.a
+	rm -rf $(PREFIX)/include/algos
+
+.PHONY: clean
 clean:
 	@echo "Cleaning..."
 	rm -rf $(BUILDDIR) $(EXE) $(TESTEXE) $(LIBEXE) $(BINDIR)/*.dSYM
-
-.PHONY: clean
 

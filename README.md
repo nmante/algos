@@ -1,34 +1,50 @@
-#Algorithms and Data Structures
+# <div id="intro">Algorithms and Data Structures</div>
 
-This directory will contain code for common algorithms.
+This repo contains common algorithms and data structures. 
 
-We'll have these types of algorithms and data structures:
+***Context:*** I started developing this library/code as a way to study for interviews.
 
-| **Data Structure** | **Algorithms** | **Concept** |
-| --- | --- | --- |
-| Linked Lists | Breadth First Search | Bit Manipulation |
-| Binary Trees | Depth First Search | Singleton Design Pattern | 
-| Tries | Binary Search | Factory Design Pattern |
-| Stacks | Merge Sort | Memory (Stack vs. Heap) | 
-| Queues | Quick Sort | Recursion | 
-| Vectors/Array Lists | Tree Insert Find | Big-O Time |
-| Hash Tables | | 
+## <div id="installation">Installation</div>
 
-...just to name a few.
-
-##Installation
-
-###OSX/Linux installation
+### <div id="unixInstall">OSX/Linux Installation</div>
 
 	git clone https://github.com/nmante/algos
 	cd algos
 	make
+	make install
 	
 Running `make` will generate a few things:
 
-- demo program `algos.out`, 
-- a library that you can use in your own programs `libalgos.a` 
-- and a set of tests `algos-tests.out`. 
+- Demo program `algos.out` 
+- A library that you can use in your own programs `libalgos.a` 
+- A set of tests `algos-tests.out`.
 
-These files will sit in the `bin` directory.
+Running `make install` will move all the necessary headers & libraries to the `/usr/local/include/algos` and `/usr/local/lib`, respectively.
 
+These compiled libraries/executable files will sit in the `bin` directory.
+
+### <div id="unixUninstall">OSX/Linux Uninstall</div>
+
+To uninstall, simply run:
+
+	make uninstall
+	
+This will remove the headers and library from 
+
+### Usage
+
+To see an example of how to use this library, go ahead and check out the `main.cpp` file.
+
+## <div id="api">API</div>
+
+- #### <div id="ds">Data Structures</div>
+
+- ##### <div id="graph">Graphs</div>
+
+#### <div id="tree">Trees</div>
+
+##### <div id="avl">AVL Trees</div>
+
+##### <div id="redblack">Red Black Trees</div>
+
+### Sorting
