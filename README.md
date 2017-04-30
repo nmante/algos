@@ -29,22 +29,34 @@ To uninstall, simply run:
 
 	make uninstall
 	
-This will remove the headers and library from 
+This will remove the headers and library from
 
 ### Usage
 
 To see an example of how to use this library, go ahead and check out the `main.cpp` file.
 
-## <div id="api">API</div>
+## <div id="api">Library Contents</div>
 
-- #### <div id="ds">Data Structures</div>
+This contains a list of data structures and algorithms in this library. This list will be updated as more stuff is added!
 
-- ##### <div id="graph">Graphs</div>
+#### <div id="ds">Data Structures</div>
 
-#### <div id="tree">Trees</div>
+- <div id="graph">Graphs</div>
+- <div id="tree">Trees</div>
+	- <div id="avl">AVL Trees</div>
+	- <div id="rb">Red Black</div>
+- <div id="heap">Heaps</div>
+	- Min Heap
+	- Max Heap
 
-##### <div id="avl">AVL Trees</div>
+#### Algorithms
 
-##### <div id="redblack">Red Black Trees</div>
-
-### Sorting
+- <div id="search">Search</div>
+	- Binary
+	- Interpolative
+	- Kth Largest
+- <div id="sort">Sorting</div>
+	- MergeSort
+	- Insertion Sort
+	- Heap Sort
+	- Quick Sort
