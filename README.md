@@ -32,7 +32,7 @@ To see a simple usage of this library, go ahead and run these commands:
 	make
 	./algos.out
 	
-The source code for the example is in [example/main.cpp](example/main.cpp).
+The source code for the example is in [example/main.cpp](example/main.cpp). Also, I've included a sample [`Makefile`](example/Makefile) so you can see how to include it in your own projects.
 
 ### <div id="unixUninstall">OSX/Linux Uninstall</div>
 
@@ -41,8 +41,6 @@ To uninstall, simply run:
 	make uninstall
 
 in the repo directory (i.e. in algos dir).
-	
-
 	
 This will remove the header folder and library file from `/usr/local/include/algos` and `/usr/local/lib/libalgos.a`, respectively.
 
