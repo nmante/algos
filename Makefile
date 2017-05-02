@@ -38,13 +38,8 @@ INC := -I$(INCDIR)
 CATCHURL := https://raw.githubusercontent.com/philsquared/Catch/master/single_include/catch.hpp
 CATCHSRC := $(TESTDIR)/catch.hpp
 
-all: $(APP) $(LIBRARY) $(TESTS)
+all: $(LIBRARY) $(TESTS)
 	@echo "Building all targets..."
-
-$(APP): $(OBJS)
-	@echo "Building executable..."
-	@mkdir -p $(BINDIR)
-	$(CC) $(DEBUG) $(CFLAGS) $^ main.cpp -o $(EXE)
 
 $(LIBRARY): $(OBJS)
 	@echo "Building library..."

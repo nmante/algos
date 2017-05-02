@@ -12,15 +12,15 @@ touch $source
 
 upper=`echo "$file" | tr [a-z] [A-Z]`
 
-echo "#ifndef __$upper""HPP__" >> $header
-echo "#define __$upper""HPP__" >> $header
+echo "#ifndef __$upper"'_'"HPP__" >> $header
+echo "#define __$upper"'_'"HPP__" >> $header
 echo "" >> $header
 echo "namespace algos {" >> $header
 echo "namespace $file {" >> $header
 echo "" >> $header
 echo "}" >> $header
 echo "}" >> $header
-echo "#endif // __$upper""HPP__" >> $header
+echo "#endif // __$upper"'_'"HPP__" >> $header
 
 # Update source file
 echo '#include "../../'$header'"' >> $source

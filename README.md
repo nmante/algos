@@ -8,14 +8,15 @@ This repo contains common algorithms and data structures.
 
 ### <div id="unixInstall">OSX/Linux Installation</div>
 
+To install the library, run these commands:
+
 	git clone https://github.com/nmante/algos
 	cd algos
 	make
 	make install
 	
 Running `make` will generate a few things:
-
-- Demo program `algos.out` 
+ 
 - A library that you can use in your own programs `libalgos.a` 
 - A set of tests `algos-tests.out`.
 
@@ -23,17 +24,27 @@ Running `make install` will move all the necessary headers & libraries to the `/
 
 These compiled libraries/executable files will sit in the `bin` directory.
 
+### Usage
+
+To see a simple usage of this library, go ahead and run these commands:
+
+	cd example
+	make
+	./algos.out
+	
+The source code for the example is in [example/main.cpp](example/main.cpp).
+
 ### <div id="unixUninstall">OSX/Linux Uninstall</div>
 
 To uninstall, simply run:
 
 	make uninstall
+
+in the repo directory (i.e. in algos dir).
 	
-This will remove the headers and library from
 
-### Usage
-
-To see an example of how to use this library, go ahead and check out the `main.cpp` file.
+	
+This will remove the header folder and library file from `/usr/local/include/algos` and `/usr/local/lib/libalgos.a`, respectively.
 
 ## <div id="api">Library Contents</div>
 
@@ -48,6 +59,10 @@ This contains a list of data structures and algorithms in this library. This lis
 - Heaps
 	- Min Heap
 	- Max Heap
+- Linked Lists
+	- Singly
+	- Doubly
+	- Circular
 
 #### Algorithms
 

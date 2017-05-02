@@ -7,5 +7,6 @@
 #include "heap/maxheap.hpp"
 #include "graph.hpp"
 #include "tree/avltree.hpp"
+#include "linkedlist.hpp"
 
 #endif // __ALGOS_HPP__
