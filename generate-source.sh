@@ -16,7 +16,7 @@ echo "#ifndef __$upper"'_'"HPP__" >> $header
 echo "#define __$upper"'_'"HPP__" >> $header
 echo "" >> $header
 echo "namespace algos {" >> $header
-echo "namespace $file {" >> $header
+echo "namespace $dir {" >> $header
 echo "" >> $header
 echo "}" >> $header
 echo "}" >> $header

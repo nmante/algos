@@ -8,5 +8,9 @@
 #include "graph.hpp"
 #include "tree/avltree.hpp"
 #include "linkedlist.hpp"
+#include "hash/hash.hpp"
+#include "hash/hashset.hpp"
+#include "hash/hashtree.hpp"
+#include "hash/hashtable.hpp"
 
 #endif // __ALGOS_HPP__

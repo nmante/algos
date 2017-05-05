@@ -61,6 +61,8 @@ This contains a list of data structures and algorithms in this library. This lis
 	- Singly
 	- Doubly
 	- Circular
+- Hashes
+	- Hash
 
 #### Algorithms
 

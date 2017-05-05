@@ -23,9 +23,20 @@ void trees(){
 	a.deleteKey(3);
 }
 
+void hash(){
+	algos::hash::HashTable<int, std::string> ht;
+	ht.insert(0, "Hello");
+	std::cout << ht << std::endl;
+	ht[0] = "hello";
+	std::cout << ht << std::endl;
+	ht.remove(0);
+	std::cout << ht << std::endl;
+}
+
 int main(){
 	search();
 	sort();
 	trees();
+	hash();
 	return 0;
 }
