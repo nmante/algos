@@ -58,11 +58,13 @@ This contains a list of data structures and algorithms in this library. This lis
 	- Min Heap
 	- Max Heap
 - Linked Lists
-	- Singly
-	- Doubly
+	- Single
+	- Double
 	- Circular
 - Hashes
-	- Hash
+	- HashTable
+	- HashSet
+	- HashTree
 
 #### Algorithms
 
