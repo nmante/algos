@@ -74,7 +74,7 @@ int MaxHeap::getLeftChildIndex(int nodeIndex) const{
 
 
 bool MaxHeap::isEmpty() const { 
-	return (array.size() == 0) ? true : false; 
+	return array.size() == 0; 
 }
 
 int MaxHeap::removeMax(){
@@ -126,7 +126,7 @@ void MaxHeap::heapDown(int nodeIndex){
 			maxChildIndex++;
 		}
 
-		// Child bigger, so we're done
+		// Child smaller, so we're done
 		if(this->array[nodeIndex] >= this->array[maxChildIndex]){
 			return;
 		}
