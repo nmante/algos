@@ -1,41 +1,57 @@
 #ifndef __MINHEAP_HPP__
 #define __MINHEAP_HPP__
-#include <vector>
+#include "heap.hpp"
 
 namespace algos {
 namespace ds {
 
-class MinHeap {
+template <class V, class comp>
+class MinHeap : Heap<V, comp>{
 private:
-	std::vector<int> array;
-	void buildMinHeap();
 	void heapDown(int nodeIndex);
-
 public:
-	MinHeap(){}
-	MinHeap(std::vector<int> arr) : array(arr) {
-		this->buildMinHeap();
-	}
-	MinHeap(const MinHeap &m) : array(m.array) {
-		this->buildMinHeap();
-	}
-
-	~MinHeap(){}
-
-	bool isEmpty() const { return this->size() == 0; }
-	std::vector<int> getArray() const { return array; }
-	int size() const { return (int)this->array.size(); }
-
-	bool isLeaf(int nodeIndex) const;
-	bool isValid(int nodeIndex) const;
-	int getParentIndex(int nodeIndex) const;
-	int getRightChildIndex(int nodeIndex) const;
-	int getLeftChildIndex(int nodeIndex) const;
-
-	int getMin() const;
-	int removeMin();
+	void buildHeap();
 
 };
+
+template <class V, class comp>
+void MinHeap<V, comp>::buildHeap(){
+	// Create a new array
+	// Iterate through our underlying array
+	// Take element
+	// As we iterate check to see if child is bigger
+	// if it is, swap child with parent 
+	for(int i = this->size() - 1; i >= 0; i--){
+		this->heapDown(i);
+	}
+}
+
+template <class V, class comp>
+void MinHeap<V, comp>::heapDown(int nodeIndex){
+
+	// Only heapify non child nodes
+	while(!this->isLeaf(nodeIndex)){
+
+		// Find the smallest child
+		int minIndex = this->getLeftChildIndex(nodeIndex);
+		bool leftChildSmaller = comp()(this->array[minIndex],
+				this->array[minIndex + 1]); 
+		if(this->isValid(minIndex) 
+			&& !leftChildSmaller){
+			minIndex++;
+		}
+
+		// If the child is bigger we're done 
+		if(!comp()(this->array[minIndex], this->array[nodeIndex])){
+			return;
+		}
+
+		std::swap(this->array[nodeIndex], 
+				this->array[minIndex]);
+
+		nodeIndex = minIndex;
+	}
+}
 
 }
 }

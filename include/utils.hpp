@@ -6,7 +6,7 @@
 namespace algos {
 namespace utils {
 
-std::string vectorToString(std::vector<int> &arr);
+std::string vectorToString(std::vector<int> arr);
 int popVectorStack(std::vector<int> &s);
 
 }

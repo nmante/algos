@@ -97,15 +97,15 @@ void insertionSort(std::vector<int> &arr){
  */
 void heapSort(std::vector<int> &arr){
 	using namespace algos;
-	ds::MaxHeap mh(arr);
+	ds::MaxHeap<int> mh(arr);
+	mh.buildHeap();
 	auto arr2 = mh.getArray();
 
 	std::vector<int> sortedList;
 	while (mh.size() > 0){
-		sortedList.insert(sortedList.begin(), mh.removeMax());
+		sortedList.insert(sortedList.begin(), mh.removeTop());
 	}
 	arr = sortedList;
-
 }
 
 /*

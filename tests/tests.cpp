@@ -73,7 +73,8 @@ TEST_CASE("DATA STRUCTURES - Max Heap"){
 	 * 6 
 	 */
 	std::vector<int> v = {2, 3, 1, 6, 10, 9, -1, 20};
-	ds::MaxHeap mh(v);
+	ds::MaxHeap<int> mh(v);
+	mh.buildHeap();
 	REQUIRE(mh.size() == 8);
 
 	SECTION("check isLeaf function"){
@@ -87,8 +88,14 @@ TEST_CASE("DATA STRUCTURES - Max Heap"){
 			}
 		}
 	}
-	
+
+	SECTION("check Top of Heap"){
+		REQUIRE(mh.getTop() == 20);
+		mh.removeTop();
+		REQUIRE(mh.getTop() == 10);
+	}
 }
+
 
 TEST_CASE("SORT - Max Heap Sort"){
 	std::vector<int> v = {2, 3, 1, 6, 10, 9, -1, 20};
